@@ -1,5 +1,4 @@
 from pygame import *
-from random import randint
 
 class GameSprite(sprite.Sprite):
     def __init__(self, img_name, width, height, x, y):
@@ -33,7 +32,7 @@ class Player(GameSprite):
     def jump(self):
         if self.isJump:
             if self.jumpCount >= -10: 
-                self.rect.y -= (self.jumpCount * abs(self.jumpCount)) * 0.2
+                self.rect.y -= (self.jumpCount * abs(self.jumpCount)) * 0.5
                 self.jumpCount -= 1
             else:
                 self.isJump = False
@@ -47,7 +46,7 @@ class Enemy(GameSprite):
     def move(self):
         pass
 
-class Wall(GameSprite):
+class Wall():
     def __init__(self, width,height, x,y, color=(255,255,255), transperancy=255):
         self.wall = Surface((width,height))
         self.wall.set_alpha(transperancy)
@@ -57,9 +56,4 @@ class Wall(GameSprite):
         self.rect.y = y
 
     def draw(self, window):
-        self.rect.x -= 5
-        if self.rect.x < 0:
-            self.rect.x = 700
-            self.rect.y = randint(50,300)
         window.blit(self.wall, (self.rect.x, self.rect.y))
-

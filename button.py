@@ -24,3 +24,4 @@ class Button(sprite.Sprite):
         window.blit(self.image, (self.rect.x, self.rect.y))
 
         return action
+
